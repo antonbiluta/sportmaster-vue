@@ -1,0 +1,10 @@
+/* Подключение шрифта GothamProMedium */
+
+@font-face {
+    font-family: 'GothamProMedium';
+    src: url("../../../public/fonts/GothamProMedium/GothamProMedium.eot");
+    src: url("../../../public/fonts/GothamProMedium/GothamProMedium.eot?#iefix") format("embedded-opentype"),
+    url("../../../public/fonts/GothamProMedium/GothamProMedium.woff") format("woff");
+    font-style: normal;
+    font-weight: 500;
+}

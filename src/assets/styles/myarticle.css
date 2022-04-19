@@ -1,0 +1,43 @@
+.main {
+    font-family: 'GothamProMedium';
+    padding: 15px 30px 30px 15px;
+    background-color: #1551e5;
+    max-width: 300px;
+    position: relative;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.name{
+    color: white;
+    font-size: 36px;
+    padding-bottom: 8px;
+}
+.author{
+    font-family: 'GothamProMedium';
+    font-size: 12px;
+    font-weight: normal;
+    padding-bottom: 30px;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+}
+.author span{
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(255,255,255, 0.7);
+}
+.body{
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+
+}
+.id{
+    position: absolute;
+    font-size: 80px;
+    bottom: 0;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.2);
+}
+.id span{
+    font-size: 50px;
+}
