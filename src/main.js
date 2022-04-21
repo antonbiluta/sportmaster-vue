@@ -8,7 +8,10 @@ Vue.component('ArticlePublishedButton', ArticlePublishedButton)
 
 Vue.config.productionTip = false
 
+store.dispatch('fetchArticles');
+
 new Vue({
   router,
-  render: h => h(App),
+  store,
+  render: h => h(App)
 }).$mount('#app')

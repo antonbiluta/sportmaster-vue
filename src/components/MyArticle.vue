@@ -9,6 +9,8 @@
 
       <div class="id"><span>#</span>{{article.id}}</div>
 
+      <router-link :to="{name:'ArticlePage',params:{id:article.id}}" class="btn">Подробнее</router-link>
+
       <ArticlePublishedButton 
       class="btn" 
       @click="$emit('change-status', article.id-1)"

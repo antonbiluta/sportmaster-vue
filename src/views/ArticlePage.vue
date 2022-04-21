@@ -1,17 +1,29 @@
 <template>
     <div>
-        <h3 class="title"></h3>
+        {{article.title}}
 
-        <h4 class="author"></h4>
+        Автор
 
-        <p class="body"></p>
+        Текст
     </div>
 </template>
 
 <script>
 export default {
-    name: 'ArticlePage'
+    name: 'ArticlePage',
+    data() {
+        return {
+            article: this.$route.params
+        }
+    },
+    created() {
+        this.article = this.$route.params
+    },
+    checkData :function(){
+        console.log(this.$route.params)
+    }
 }
+    
 </script>
 
 <style scoped>

@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import NewArticle from '../views/NewArticle.vue'
-import Article from '../components/MyArticle.vue'
+import Article from '../views/ArticlePage.vue'
 import store from '@/store'
+
+import Error404 from '@/views/404.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +22,7 @@ const routes = [
     },
     {
         path: '/article/:id',
+        name: 'ArticlePage',
         component: Article,
         props: (route) => store.state.articles.find((x) => x.id == route.params.id)
     },
@@ -28,6 +31,11 @@ const routes = [
         name: 'Add new article',
         component: NewArticle
     },
+    {
+        path: "/error",
+        alias: "/*",
+        components: {render: (h) => h(Error404)}
+    }
 ]
 
 const router = new VueRouter({

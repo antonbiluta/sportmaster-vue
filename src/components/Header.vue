@@ -4,8 +4,9 @@
             <img src="../assets/Group 2 (2).png" alt="">
         </div>
         <div>
+            <router-link class="link" to="/">Главная</router-link>
             <router-link class="link" to="/about">О нас</router-link>
-            <router-link class="link" to="">Добавить статью</router-link>
+            <router-link class="link" to="/new">Добавить статью</router-link>
         </div>
     </div>
 </template>
