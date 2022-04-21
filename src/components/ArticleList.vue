@@ -1,53 +1,48 @@
 <template>
-  <div class="container">
-    <div class="article-generation">
-        <div class="logo">
-            <img src="../assets/Group 2 (2).png" alt="">
-        </div>
-        <div class="forms">
-      <input v-model="title" type="text" placeholder="Название" />
-      <input v-model="author" type="text" placeholder="Автор" />
-      <input v-model="body" type="text" placeholder="Описание" />
-        <input v-model="published" type="checkbox" class="checkbox" id="pub"/>
-        <label for="pub">Опубликовать</label>
-      <button class="btn" @click="addArticle()">Создать статью</button>
-      </div>
-    </div>
-    <ul class="list" v-if="articles.length">
-      <MyArticle
-        v-for="(article, i) in articles"
-        :article="article"
-        :key="article.id"
-        v-bind:style="isPublished(i)"
-      />
+  <div>
+    <LoaderBlock v-if="loading" />
+    <ul class="list" v-else-if="articles.length">
+      <MyArticle 
+          v-for="(article, i) in articles" 
+          :article="article" 
+          :key="article.id" 
+          v-bind:style="isPublished(i)"
+          @change-status="changeStatus"
+          >
+      </MyArticle>
     </ul>
-    <p v-else></p>
+    <p v-else>Статей сейчас нет.</p>
   </div>
 </template>
 
 <script>
 import MyArticle from "./MyArticle.vue";
+import LoaderBlock from './Loader.vue'
 export default {
   name: "ArticleList",
   props: {
     msg: String,
   },
   components: {
-    MyArticle,
+    MyArticle, 
+    LoaderBlock
   },
   data() {
     return {
-      title: "",
-      author: "",
-      body: "",
-      published: true,
-      articles: [],
+      loading: true,
+      published: this.published,
+      articles: []
     };
   },
   beforeMount: function() {
       fetch('./db.json')
         .then(response => response.json())
-        .then(articles => this.articles = articles);
+        .then(articles => {
+          setTimeout(() => {
+              this.articles = articles
+              this.loading = false
+            }, 1000)
+          });
         console.log('Fetch data');
   },
   methods: {
@@ -59,7 +54,6 @@ export default {
         published: this.published,
         author: this.author
       }
-      console.log(newArticle)
       this.articles.push(newArticle);
       console.log(article.title);
     },
@@ -69,9 +63,16 @@ export default {
       if (this.articles[i].published) return "";
       else return "background-color: rgb(88,88,88);";
     },
-    changePublished(){
-    }
+    changeStatus(id){
+      this.articles[id].published = !this.articles[id].published;
+      this.published = this.articles[id].published
+    },
   },
+  watch: {
+    published(newVal){
+      console.log(`Статус статьи изменён на ${newVal}`)
+    }
+  }
 };
 </script>
 

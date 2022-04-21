@@ -1,19 +1,21 @@
 <template >
   <div class="main" :style="{ fontWeight: fondAuthor }">
-      <div class="name">
-          {{article.title}}
-      </div>
-      <div class="author">
-          Автор: <span>{{article.author}}</span>
-      </div>
-      <div class="body">
-          {{article.body}}
-      </div>
-      <div class="id">
-          <span>#</span>{{article.id}}
-      </div>
 
-      <ArticlePublishedButton class="btn"/>
+      <div class="name">{{article.title}}</div>
+
+      <div class="author">Автор: <span>{{toUpper}}</span></div>
+
+      <div class="body">{{article.body}}</div>
+
+      <div class="id"><span>#</span>{{article.id}}</div>
+
+      <ArticlePublishedButton 
+      class="btn" 
+      @click="$emit('change-status', article.id-1)"
+      >
+        <span v-if="article.published" slot="value">Снять с публикации</span>
+        <span v-else slot="value">Опубликовать</span>
+      </ArticlePublishedButton>
 
   </div>
 </template>
@@ -21,11 +23,13 @@
 <script>
 export default {
   name: "MyArticle",
-  data() {
-    return { fontWeight: "bold" };
-  },
   props: {
-    article: Object,
+    article: Object
+  },
+  methods:{
+    changeStatus(){
+      this.$emit('change-status', this.id-1)
+    }
   },
   computed: {
     fondAuthor() {

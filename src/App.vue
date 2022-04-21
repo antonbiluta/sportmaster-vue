@@ -1,15 +1,22 @@
 <template>
-  <div>
-    <ArticleList />
+  <div id="app">
+    <Header/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import ArticleList from "./components/ArticleList.vue";
-
+import Header from '@/components/Header.vue'
 export default {
   name: "App",
-  components: { ArticleList },
+  components: {
+    Header
+    },
+  computed: {
+    is404() {
+      return this.$route.name === '404';
+    }
+  }
 };
 </script>
 

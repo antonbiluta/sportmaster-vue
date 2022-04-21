@@ -1,5 +1,7 @@
 <template>
-        <button>TestText</button>
+        <button v-on:click.prevent="$emit('click', $event.target.value)">
+          <slot name="value"></slot>
+        </button>
 </template>
 
 <script>
